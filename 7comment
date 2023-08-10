@@ -1,0 +1,14 @@
+%{
+int cl=0;
+%}
+%%
+"/*"[a-zA-Z0-9\n\t ]"*/"  {cl++;}
+"//"[a-zA-Z0-9\t ]*"\n"   {cl++;}
+%%
+int yywrap(){}
+int main()
+{
+yylex();
+printf("number of comment lines=%d,\n",cl);
+return 0;
+}
